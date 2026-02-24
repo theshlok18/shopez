@@ -35,54 +35,54 @@ export default function Orders() {
   if (loading) return <Loading />
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-4xl font-bold mb-8">My Orders</h1>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <h1 className="text-2xl sm:text-4xl font-bold mb-6 sm:mb-8">My Orders</h1>
 
       {orders.length === 0 ? (
-        <div className="text-center py-16">
-          <p className="text-gray-500 text-lg">No orders yet</p>
+        <div className="text-center py-12 sm:py-16">
+          <p className="text-gray-500 text-base sm:text-lg">No orders yet</p>
         </div>
       ) : (
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {orders.map((order) => (
-            <div key={order.id} className="card">
-              <div className="flex justify-between items-start mb-4">
+            <div key={order.id} className="card p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-0 mb-4">
                 <div>
                   <p className="text-sm text-gray-600">Order #{order.id}</p>
                   <p className="text-sm text-gray-600">
                     {new Date(order.createdAt).toLocaleDateString()}
                   </p>
                 </div>
-                <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(order.status)}`}>
+                <span className={`px-3 py-1 rounded-full text-xs sm:text-sm font-medium w-fit ${getStatusColor(order.status)}`}>
                   {order.status}
                 </span>
               </div>
 
               <div className="space-y-3 mb-4">
                 {order.items.map((item) => (
-                  <div key={item.id} className="flex items-center space-x-4">
+                  <div key={item.id} className="flex items-center space-x-3 sm:space-x-4">
                     <img
                       src={item.productImage}
                       alt={item.productName}
-                      className="w-16 h-16 object-cover rounded"
+                      className="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded flex-shrink-0"
                     />
-                    <div className="flex-1">
-                      <p className="font-medium">{item.productName}</p>
-                      <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium text-sm sm:text-base truncate">{item.productName}</p>
+                      <p className="text-xs sm:text-sm text-gray-600">Qty: {item.quantity}</p>
                     </div>
-                    <p className="font-semibold">${item.subtotal.toFixed(2)}</p>
+                    <p className="font-semibold text-sm sm:text-base flex-shrink-0">${item.subtotal.toFixed(2)}</p>
                   </div>
                 ))}
               </div>
 
-              <div className="border-t pt-4 flex justify-between items-center">
-                <div>
-                  <p className="text-sm text-gray-600">Shipping Address</p>
-                  <p className="font-medium">{order.shippingAddress}</p>
+              <div className="border-t pt-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0">
+                <div className="min-w-0">
+                  <p className="text-xs sm:text-sm text-gray-600">Shipping Address</p>
+                  <p className="font-medium text-sm sm:text-base truncate">{order.shippingAddress}</p>
                 </div>
-                <div className="text-right">
-                  <p className="text-sm text-gray-600">Total Amount</p>
-                  <p className="text-2xl font-bold text-indigo-600">${order.totalAmount.toFixed(2)}</p>
+                <div className="text-left sm:text-right">
+                  <p className="text-xs sm:text-sm text-gray-600">Total Amount</p>
+                  <p className="text-xl sm:text-2xl font-bold text-indigo-600">${order.totalAmount.toFixed(2)}</p>
                 </div>
               </div>
             </div>

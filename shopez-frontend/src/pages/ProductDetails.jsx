@@ -45,47 +45,48 @@ export default function ProductDetails() {
   if (!product) return null
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div className="aspect-square overflow-hidden rounded-2xl">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12">
+        <div className="aspect-square overflow-hidden rounded-xl sm:rounded-2xl">
           <img
             src={product.imageUrl}
             alt={product.name}
             className="w-full h-full object-cover"
+            loading="lazy"
           />
         </div>
 
-        <div>
-          <h1 className="text-4xl font-bold mb-4">{product.name}</h1>
-          <p className="text-3xl font-bold text-indigo-600 mb-6">${product.price}</p>
+        <div className="flex flex-col">
+          <h1 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">{product.name}</h1>
+          <p className="text-2xl sm:text-3xl font-bold text-indigo-600 mb-4 sm:mb-6">${product.price}</p>
           
-          <div className="mb-6">
+          <div className="mb-4 sm:mb-6">
             <span className="inline-block bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">
               {product.categoryName}
             </span>
           </div>
 
-          <p className="text-gray-700 mb-8 leading-relaxed">{product.description}</p>
+          <p className="text-gray-700 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">{product.description}</p>
 
-          <div className="mb-6">
-            <p className="text-gray-600 mb-2">
+          <div className="mb-4 sm:mb-6">
+            <p className="text-gray-600 text-sm sm:text-base">
               Stock: <span className="font-semibold">{product.stock} available</span>
             </p>
           </div>
 
-          <div className="flex items-center space-x-4 mb-8">
-            <label className="text-gray-700 font-medium">Quantity:</label>
-            <div className="flex items-center border border-gray-300 rounded-lg">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+            <label className="text-gray-700 font-medium text-sm sm:text-base">Quantity:</label>
+            <div className="flex items-center border border-gray-300 rounded-lg w-fit">
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                className="px-4 py-2 hover:bg-gray-100"
+                className="px-3 sm:px-4 py-2 hover:bg-gray-100 text-lg"
               >
                 -
               </button>
-              <span className="px-6 py-2 border-x border-gray-300">{quantity}</span>
+              <span className="px-4 sm:px-6 py-2 border-x border-gray-300 min-w-[3rem] text-center">{quantity}</span>
               <button
                 onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}
-                className="px-4 py-2 hover:bg-gray-100"
+                className="px-3 sm:px-4 py-2 hover:bg-gray-100 text-lg"
               >
                 +
               </button>
@@ -95,7 +96,7 @@ export default function ProductDetails() {
           <button
             onClick={handleAddToCart}
             disabled={product.stock === 0}
-            className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed py-3 sm:py-4 text-sm sm:text-base"
           >
             {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
           </button>

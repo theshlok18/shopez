@@ -2,7 +2,7 @@ services:
   # MySQL Database
   - type: mysql
     name: shopez-db
-    plan: standard
+    plan: free
     region: oregon
     ipAllowList: []
     databaseName: shopez_db
@@ -12,7 +12,7 @@ services:
   - type: web
     name: shopez-backend
     runtime: docker
-    plan: standard
+    plan: free
     region: oregon
     rootDir: shopez-backend
     dockerfilePath: ./Dockerfile
@@ -40,10 +40,7 @@ services:
       - key: JWT_SECRET
         generateValue: true
       - key: CORS_ORIGINS
-        fromService:
-          type: static_site
-          name: shopez-frontend
-          property: url
+        value: "*"
     healthCheckPath: /api/health
     autoDeploy: true
 
@@ -51,7 +48,7 @@ services:
   - type: static_site
     name: shopez-frontend
     runtime: static
-    plan: starter
+    plan: free
     region: oregon
     rootDir: shopez-frontend
     buildCommand: npm install && npm run build

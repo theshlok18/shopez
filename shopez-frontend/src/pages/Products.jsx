@@ -52,12 +52,12 @@ export default function Products() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-4xl font-bold mb-8">All Products</h1>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <h1 className="text-2xl sm:text-4xl font-bold mb-6 sm:mb-8">All Products</h1>
 
       {/* Filters */}
-      <div className="card mb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="card mb-6 sm:mb-8 p-4 sm:p-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           <input
             type="text"
             placeholder="Search products..."
@@ -89,7 +89,7 @@ export default function Products() {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -97,21 +97,21 @@ export default function Products() {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex justify-center mt-12 space-x-2">
+            <div className="flex flex-col sm:flex-row items-center justify-center mt-8 sm:mt-12 gap-3 sm:gap-2">
               <button
                 onClick={() => setFilters({ ...filters, page: filters.page - 1 })}
                 disabled={filters.page === 0}
-                className="btn-secondary disabled:opacity-50"
+                className="btn-secondary disabled:opacity-50 w-full sm:w-auto text-sm sm:text-base"
               >
                 Previous
               </button>
-              <span className="px-4 py-2 text-gray-700">
+              <span className="px-4 py-2 text-gray-700 text-sm sm:text-base">
                 Page {filters.page + 1} of {totalPages}
               </span>
               <button
                 onClick={() => setFilters({ ...filters, page: filters.page + 1 })}
                 disabled={filters.page >= totalPages - 1}
-                className="btn-secondary disabled:opacity-50"
+                className="btn-secondary disabled:opacity-50 w-full sm:w-auto text-sm sm:text-base"
               >
                 Next
               </button>

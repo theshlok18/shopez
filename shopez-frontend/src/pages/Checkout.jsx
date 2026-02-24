@@ -38,14 +38,14 @@ export default function Checkout() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-4xl font-bold mb-8">Checkout</h1>
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <h1 className="text-2xl sm:text-4xl font-bold mb-6 sm:mb-8">Checkout</h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div>
-          <div className="card">
-            <h2 className="text-2xl font-semibold mb-6">Shipping Information</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+        <div className="order-2 lg:order-1">
+          <div className="card p-4 sm:p-6">
+            <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Shipping Information</h2>
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Shipping Address
@@ -87,7 +87,7 @@ export default function Checkout() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full btn-primary disabled:opacity-50"
+                className="w-full btn-primary disabled:opacity-50 py-3 sm:py-4"
               >
                 {loading ? 'Processing...' : 'Place Order'}
               </button>
@@ -95,22 +95,22 @@ export default function Checkout() {
           </div>
         </div>
 
-        <div>
-          <div className="card">
-            <h2 className="text-2xl font-semibold mb-6">Order Summary</h2>
-            <div className="space-y-4 mb-6">
+        <div className="order-1 lg:order-2">
+          <div className="card p-4 sm:p-6">
+            <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Order Summary</h2>
+            <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6 max-h-64 overflow-y-auto">
               {cart.items.map((item) => (
-                <div key={item.id} className="flex justify-between">
-                  <div>
-                    <p className="font-medium">{item.productName}</p>
-                    <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
+                <div key={item.id} className="flex justify-between text-sm sm:text-base">
+                  <div className="flex-1 min-w-0 mr-2">
+                    <p className="font-medium truncate">{item.productName}</p>
+                    <p className="text-gray-600">Qty: {item.quantity}</p>
                   </div>
-                  <p className="font-semibold">${item.subtotal.toFixed(2)}</p>
+                  <p className="font-semibold flex-shrink-0">${item.subtotal.toFixed(2)}</p>
                 </div>
               ))}
             </div>
-            <div className="border-t pt-4">
-              <div className="flex justify-between text-xl font-bold">
+            <div className="border-t pt-3 sm:pt-4">
+              <div className="flex justify-between text-lg sm:text-xl font-bold">
                 <span>Total</span>
                 <span className="text-indigo-600">${cart.totalAmount.toFixed(2)}</span>
               </div>

@@ -71,44 +71,44 @@ export default function AdminDashboard() {
   if (loading) return <Loading />
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-4xl font-bold mb-8">Admin Dashboard</h1>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <h1 className="text-2xl sm:text-4xl font-bold mb-6 sm:mb-8">Admin Dashboard</h1>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-        <div className="card bg-gradient-to-r from-indigo-600 to-blue-600 text-white">
-          <p className="text-sm opacity-90">Total Users</p>
-          <p className="text-4xl font-bold">{stats?.totalUsers}</p>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-8 sm:mb-12">
+        <div className="card bg-gradient-to-r from-indigo-600 to-blue-600 text-white p-4 sm:p-6">
+          <p className="text-xs sm:text-sm opacity-90">Total Users</p>
+          <p className="text-2xl sm:text-4xl font-bold">{stats?.totalUsers}</p>
         </div>
-        <div className="card bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
-          <p className="text-sm opacity-90">Total Products</p>
-          <p className="text-4xl font-bold">{stats?.totalProducts}</p>
+        <div className="card bg-gradient-to-r from-emerald-600 to-teal-600 text-white p-4 sm:p-6">
+          <p className="text-xs sm:text-sm opacity-90">Total Products</p>
+          <p className="text-2xl sm:text-4xl font-bold">{stats?.totalProducts}</p>
         </div>
-        <div className="card bg-gradient-to-r from-purple-600 to-pink-600 text-white">
-          <p className="text-sm opacity-90">Total Orders</p>
-          <p className="text-4xl font-bold">{stats?.totalOrders}</p>
+        <div className="card bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 sm:p-6">
+          <p className="text-xs sm:text-sm opacity-90">Total Orders</p>
+          <p className="text-2xl sm:text-4xl font-bold">{stats?.totalOrders}</p>
         </div>
-        <div className="card bg-gradient-to-r from-orange-600 to-red-600 text-white">
-          <p className="text-sm opacity-90">Total Revenue</p>
-          <p className="text-4xl font-bold">${stats?.totalRevenue?.toFixed(2)}</p>
+        <div className="card bg-gradient-to-r from-orange-600 to-red-600 text-white p-4 sm:p-6">
+          <p className="text-xs sm:text-sm opacity-90">Total Revenue</p>
+          <p className="text-2xl sm:text-4xl font-bold">${stats?.totalRevenue?.toFixed(2)}</p>
         </div>
       </div>
 
       {/* Product Management */}
-      <div className="card mb-8">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">Product Management</h2>
+      <div className="card mb-8 p-4 sm:p-6">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0 mb-4 sm:mb-6">
+          <h2 className="text-xl sm:text-2xl font-bold">Product Management</h2>
           <button
             onClick={() => setShowProductForm(!showProductForm)}
-            className="btn-primary"
+            className="btn-primary text-sm sm:text-base w-full sm:w-auto"
           >
             {showProductForm ? 'Cancel' : 'Add Product'}
           </button>
         </div>
 
         {showProductForm && (
-          <form onSubmit={handleSubmit} className="mb-8 p-6 bg-gray-50 rounded-lg">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <form onSubmit={handleSubmit} className="mb-6 sm:mb-8 p-4 sm:p-6 bg-gray-50 rounded-lg">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <input
                 type="text"
                 placeholder="Product Name"
@@ -150,46 +150,46 @@ export default function AdminDashboard() {
               <input
                 type="url"
                 placeholder="Image URL"
-                className="input-field md:col-span-2"
+                className="input-field sm:col-span-2"
                 value={formData.imageUrl}
                 onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
               />
               <textarea
                 placeholder="Description"
-                className="input-field md:col-span-2"
+                className="input-field sm:col-span-2"
                 rows={3}
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               />
             </div>
-            <button type="submit" className="btn-primary mt-4">
+            <button type="submit" className="btn-primary mt-4 w-full sm:w-auto">
               Create Product
             </button>
           </form>
         )}
 
-        <div className="overflow-x-auto">
-          <table className="w-full">
+        <div className="overflow-x-auto -mx-4 sm:mx-0">
+          <table className="w-full min-w-[600px] sm:min-w-0">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-4 py-3 text-left text-sm font-semibold">Product</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold">Price</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold">Stock</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold">Category</th>
-                <th className="px-4 py-3 text-left text-sm font-semibold">Actions</th>
+                <th className="px-3 sm:px-4 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold">Product</th>
+                <th className="px-3 sm:px-4 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold">Price</th>
+                <th className="px-3 sm:px-4 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold">Stock</th>
+                <th className="px-3 sm:px-4 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold">Category</th>
+                <th className="px-3 sm:px-4 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y">
               {products.map((product) => (
                 <tr key={product.id}>
-                  <td className="px-4 py-3">{product.name}</td>
-                  <td className="px-4 py-3">${product.price}</td>
-                  <td className="px-4 py-3">{product.stock}</td>
-                  <td className="px-4 py-3">{product.categoryName}</td>
-                  <td className="px-4 py-3">
+                  <td className="px-3 sm:px-4 py-2 sm:py-3 text-sm">{product.name}</td>
+                  <td className="px-3 sm:px-4 py-2 sm:py-3 text-sm">${product.price}</td>
+                  <td className="px-3 sm:px-4 py-2 sm:py-3 text-sm">{product.stock}</td>
+                  <td className="px-3 sm:px-4 py-2 sm:py-3 text-sm">{product.categoryName}</td>
+                  <td className="px-3 sm:px-4 py-2 sm:py-3">
                     <button
                       onClick={() => handleDelete(product.id)}
-                      className="text-red-600 hover:text-red-800"
+                      className="text-red-600 hover:text-red-800 text-sm"
                     >
                       Delete
                     </button>
