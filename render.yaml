@@ -1,0 +1,67 @@
+services:
+  # MySQL Database
+  - type: mysql
+    name: shopez-db
+    plan: standard
+    region: oregon
+    ipAllowList: []
+    databaseName: shopez_db
+    user: shopez_user
+
+  # Backend Web Service
+  - type: web
+    name: shopez-backend
+    runtime: docker
+    plan: standard
+    region: oregon
+    rootDir: shopez-backend
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: DB_HOST
+        fromDatabase:
+          name: shopez-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: shopez-db
+          property: port
+      - key: DB_URL
+        value: jdbc:mysql://${DB_HOST}:${DB_PORT}/shopez_db?createDatabaseIfNotExist=true&useSSL=true&serverTimezone=UTC
+      - key: DB_USERNAME
+        fromDatabase:
+          name: shopez-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: shopez-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        fromService:
+          type: static_site
+          name: shopez-frontend
+          property: url
+    healthCheckPath: /api/health
+    autoDeploy: true
+
+  # Frontend Static Site
+  - type: static_site
+    name: shopez-frontend
+    runtime: static
+    plan: starter
+    region: oregon
+    rootDir: shopez-frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: shopez-backend
+          property: url
+    autoDeploy: true
+
+version: "1"

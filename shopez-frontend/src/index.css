@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-800 antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+@layer components {
+  /* Primary Button - Warm Coral to Rose gradient */
+  .btn-primary {
+    @apply bg-gradient-to-r from-rose-500 to-orange-500 text-white px-6 py-2.5 rounded-xl font-semibold 
+           hover:from-rose-600 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl 
+           hover:-translate-y-0.5 active:translate-y-0;
+  }
+  
+  /* Secondary Button - Teal to Emerald */
+  .btn-secondary {
+    @apply bg-gradient-to-r from-teal-500 to-emerald-500 text-white px-6 py-2.5 rounded-xl font-semibold 
+           hover:from-teal-600 hover:to-emerald-600 transition-all duration-300 shadow-md hover:shadow-lg
+           hover:-translate-y-0.5 active:translate-y-0;
+  }
+  
+  /* Outline Button */
+  .btn-outline {
+    @apply bg-white/80 backdrop-blur-sm text-slate-700 px-6 py-2.5 rounded-xl font-semibold 
+           border-2 border-slate-200 hover:border-rose-400 hover:text-rose-500 
+           transition-all duration-300 shadow-sm hover:shadow-md;
+  }
+  
+  /* Modern Card with glass effect */
+  .card {
+    @apply bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl 
+           transition-all duration-300 p-6 border border-slate-100
+           hover:-translate-y-1;
+  }
+  
+  /* Gradient Card */
+  .card-gradient {
+    @apply bg-gradient-to-br from-rose-50 via-white to-orange-50 rounded-2xl shadow-lg 
+           hover:shadow-xl transition-all duration-300 p-6 border border-rose-100
+           hover:-translate-y-1;
+  }
+  
+  /* Input Field - Modern styling */
+  .input-field {
+    @apply w-full px-4 py-3 bg-slate-50 border-2 border-slate-200 rounded-xl 
+           focus:ring-2 focus:ring-rose-400 focus:border-rose-400 focus:bg-white
+           outline-none transition-all duration-200 placeholder:text-slate-400;
+  }
+  
+  /* Section Title */
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-800 via-rose-600 to-orange-500 
+           bg-clip-text text-transparent;
+  }
+  
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-rose-500 via-orange-500 to-amber-500 bg-clip-text text-transparent;
+  }
+  
+  /* Animated gradient background */
+  .gradient-bg {
+    background: linear-gradient(-45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+  
+  /* Warm gradient background */
+  .warm-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #ffa502 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+  }
+  
+  /* Sunset gradient */
+  .sunset-gradient {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 50%, #fa709a 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+  }
+  
+  /* Ocean gradient */
+  .ocean-gradient {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #43e97b 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 10s ease infinite;
+  }
+  
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+  
+  /* Hover lift effect */
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-xl;
+  }
+  
+  /* Pulse animation for badges */
+  .pulse-badge {
+    @apply animate-pulse;
+  }
+  
+  /* Floating animation */
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  /* Glow effect */
+  .glow {
+    box-shadow: 0 0 20px rgba(251, 113, 133, 0.5);
+  }
+  
+  /* Shimmer loading effect */
+  .shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #fb7185, #f97316);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #f43f5e, #ea580c);
+}
